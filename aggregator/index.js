@@ -1,9 +1,21 @@
 const mesg = require('mesg-js').service()
 
+let list = []
+
 mesg.listenTask({
-  taskX: require('./tasks/taskX')
+  add: ({ data }, { added }) => {
+    list = [...list, data]
+    return added({
+      count: list.length
+    })
+  }
 })
   .on('error', (error) => console.error(error))
 
-mesg.emitEvent('started', { x: true })
-  .catch((error) => console.error(error))
+setInterval(() => {
+  const listToSend = list
+  list = []
+  mesg.emitEvent('newBlock', {
+    list: listToSend
+  })
+}, process.env.INTERVAL)

@@ -1,24 +1,20 @@
-name: myservice
-sid: myservice
-description: "Description of my service"
+name: aggregator
+sid: aggregator
+description: "Aggregate data and release when a certain condition is reached"
+configuration:
+  env:
+    - INTERVAL=10000
 tasks:
-  taskX:
+  add:
     inputs:
-      foo:
-        type: String
-      bar:
-        type: String
+      data: { type: Any }
     outputs:
-      success:
+      added:
         data:
-          message:
-            type: String
-      error:
-        data:
-          error:
-            type: String
+          count: { type: Number }
 events:
-  started:
+  newBlock:
     data:
-      x:
-        type: Boolean
+      list:
+        repeated: true
+        type: Any

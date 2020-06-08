@@ -1,8 +1,8 @@
-const mesg = require('mesg-js').service()
+const liteflow = new (require('@liteflow/service'))()
 
 let list = []
 
-mesg.listenTask({
+liteflow.listenTask({
   add: ({ data }, { added }) => {
     list = [...list, data]
     return added({
@@ -15,7 +15,7 @@ mesg.listenTask({
 setInterval(() => {
   const listToSend = list
   list = []
-  mesg.emitEvent('newBlock', {
+  liteflow.emitEvent('newBlock', {
     list: listToSend
   })
 }, process.env.INTERVAL)

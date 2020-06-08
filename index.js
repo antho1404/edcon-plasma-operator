@@ -1,4 +1,4 @@
-const MESG = require('mesg-js').application()
+const MESG = require('@liteflow/service').application()
 
 const UTXO_SERVICE = 'utxo'
 const CONTRACT_SERVICE = 'ethereum-contract'

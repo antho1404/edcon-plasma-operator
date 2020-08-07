@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "mesg-js": "^2.0.1"
+    "@liteflow/service": "^1.0.7"
   },
   "devDependencies": {},
   "scripts": {
